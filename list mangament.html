@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <title>Contact List</title>
+<style>
+    
+    #topNavigationBar{
+    height: 40px;
+    background-color: rgb(25, 23, 23);
+    color: rgb(220, 214, 214);
+    display: flex;
+    padding-top: 15px;
+}
+#title {
+    display: flex;   
+    margin-left: 30px;
+    margin-right: 1000px;
+    justify-content: flex-start;
+}
+#register,#create,#AllContacts{
+    margin-left: 50px;
+    margin-right: 40px;
+}
+#logout{
+    margin-left: 50px;
+    margin-right: 40px;
+    padding: 7px;
+    background-color: rgb(95, 240, 150);
+    color: rgb(99, 35, 147);
+}
+#mainBody{
+    margin-left: 100px;
+}
+.form-group{
+    color: rgb(9, 80, 151);
+}
+.form-group input{
+    border:none;
+    background-color: rgb(154, 145, 151);
+    padding: 15px;
+    width: 1000px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+.form-group button{
+    border: none;
+    color: rgb(131, 192, 51);
+    background-color: black;
+    padding: 12px;
+    width: 100px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}</style>  </head>
+  <body>
+    <div id="topNavigationBar">
+      <span id="title"> CLM </span>
+      <span id="subNav">
+        <span id="login" class="firstPage"> LOGIN </span>
+        <span id="register" class="firstPage"> REGISTER </span>
+        <span id="AllContacts" style="display: none;" class="secondPage"> ALL CONTACTS </span>
+        <span id="create" style="display: none;" class="secondPage"> CREATE </span>
+        <span id="logout" style="display: none;" class="secondPage"> LOGOUT </span>
+      </span>
+    </div>
+    <div id="mainBody"></div>
+    <div id="loginContent" style="display: none">
+      <h2>LOGIN</h2>
+      <form id="loginForm">
+          <div class="form-group">
+              <label for="emailAddress">Email Address</label>
+              <div>
+                <input type="email" id="emailAddress" name="emailAddress" placeholder="Enter your email here" />
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <div>
+                <input type="password" id="password" name="password" placeholder="Enter your password here" required />
+              </div>
+          </div>
+          <div class="form-group">
+              <button type="button" id="loginButton" onclick="login()">Login</button>
+          </div>
+          <div class="form-group">
+            <span> Don't have an account? <u id="createOne" style="font-weight: bold;">Create One</u></span>
+          </div>
+      </form>
+    </div>
+    <div id="registerContent" style="display: none;">
+        <h2>CREATE YOUR ACCOUNT</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <div>
+                    <input type="text" id="name" name="name" placeholder="Your Name goes here" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div>
+                    <input type="email" id="email" name="email" placeholder="Enter your email here" required />
+                </div>                
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div>
+                    <input type="password" id="password" name="password" placeholder="Enter your password here" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <div>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-Enter your password" required />
+                </div>                
+            </div>
+            <div class="form-group">
+                <button type="button" id="registerButton" onclick="register()">Register</button>
+            </div>
+        </form>
+    </div>
+    <div id="contactContent" style="display: none;">
+      <h2>CREATE YOUR CONTACT</h2>
+      <form id="contactForm">
+          <div class="form-group">
+              <label for="name">Name Of Person</label>
+              <div>
+                  <input type="text" id="name" name="name" placeholder="Your Name goes here" />
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="address">Address Of Person</label>
+              <div>
+                  <input type="address" id="email" name="address" placeholder="Enter your address here" required />
+              </div>                
+          </div>
+          <div class="form-group">
+              <label for="email">Email Of Person</label>
+              <div>
+                  <input type="email" id="email" name="email" placeholder="Enter your email here" required />
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="phoneNumber">Phone Number Of Person</label>
+              <div>
+                  <input type="number" id="phoneNumber" name="phoneNumber" placeholder="Enter your Phone Number" required />
+              </div>                
+          </div>
+          <div class="form-group">
+              <button type="submit" id="addContactButton" style="width: 120px;">ADD CONTACT</button>
+          </div>
+      </form>
+  </div>
+  </body>
+  <script>
+    function login(){
+      var secondPages = document.getElementsByClassName("secondPage");
+      var contactContent = document.getElementById("contactContent").innerHTML;
+      document.getElementById("title").style.marginRight = "650px";
+      for (var i = 0; i < secondPages.length; i++) {
+        secondPages[i].style.display = "inline";
+      }
+
+      var firstPages = document.getElementsByClassName("firstPage");
+      for (var i = 0; i < firstPages.length; i++) {
+        firstPages[i].style.display = "none";
+      }
+      document.getElementById("mainBody").innerHTML = contactContent;
+    }
+    function register() {
+      var loginContent = document.getElementById("loginContent").innerHTML;
+      document.getElementById("registerButton").onclick = function () {
+        mainBody.innerHTML = loginContent;
+      };
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      var mainBody = document.getElementById("mainBody");
+      var loginContent = document.getElementById("loginContent").innerHTML;
+      var registerContent =
+        document.getElementById("registerContent").innerHTML;
+
+      document.getElementById("login").onclick = function () {
+        mainBody.innerHTML = loginContent;
+      };
+      document.getElementById("logout").onclick = function () {
+        mainBody.innerHTML = loginContent;
+        var secondPages = document.getElementsByClassName("secondPage");
+        document.getElementById("title").style.marginRight = "950px";
+        for (var i = 0; i < secondPages.length; i++) {
+          secondPages[i].style.display = "none";
+        }
+
+        var firstPages = document.getElementsByClassName("firstPage");
+        for (var i = 0; i < firstPages.length; i++) {
+          firstPages[i].style.display = "inline";
+        }
+      };    
+      document.getElementById("register").onclick = function () {
+        mainBody.innerHTML = registerContent;
+      };
+    });
+  </script>
+</html>
